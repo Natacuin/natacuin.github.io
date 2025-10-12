@@ -5,7 +5,7 @@ import {
   Python,
   AWS,
   Azure,
-  Terraform,
+  //Terraform,
   CSharp,
   MicrosoftSQLServer,
   Jira,
@@ -34,7 +34,7 @@ export const TECH_STACK = [
   {
     title: "Terraform",
     href: "https://developer.hashicorp.com/terraform",
-    icon: Terraform,
+    //icon: Terraform,
   },
 
   
