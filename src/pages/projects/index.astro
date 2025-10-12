@@ -1,0 +1,43 @@
+---
+import Pattern from "@/components/ui/pattern.astro";
+import PageLayout from "@/layouts/page-layout.astro";
+
+import Box from "@/components/box/index.astro";
+import BoxHeader from "@/components/box/header.astro";
+import BoxTitle from "@/components/box/title.astro";
+import { getCollection } from "astro:content";
+import ProjectItem from "@/components/sections/projects/project-item.astro";
+
+const projects = await getCollection("projects");
+
+const coreProjects = projects.filter(project => project.data.type === "core");
+const sideProjects = projects.filter(project => project.data.type === "side");
+---
+
+<PageLayout
+  description="The projects showcased here represent a curated selection from my recent work. This portfolio focuses on modern, relevant examples rather than legacy solutions built on outdated stacks. Due to the nature of my professional engagements, much of my work is governed by confidentiality agreements that restrict the disclosure of client identities, proprietary architectures, or full solution details. As a result, what you’ll find here are distilled highlights—technical excerpts that illustrate the most compelling challenges I’ve tackled or the aspects of the solution I’m most proud of. Each project is presented with the intent to share insight into my problem-solving approach, architectural thinking, and hands-on execution. These examples are not comprehensive representations of the full systems delivered, but rather windows into the craftsmanship and strategic thinking behind them."
+  title="My Projects"
+>
+  <Pattern />
+  <Box>
+    <BoxHeader>
+      <BoxTitle> Work in progress </BoxTitle>
+    </BoxHeader>
+
+    {coreProjects.map(item => <ProjectItem project={item} />)}
+  </Box>
+
+  {
+    sideProjects.length > 0 && (
+      <Pattern />
+      <Box>
+        <BoxHeader>
+          <BoxTitle>Past projects</BoxTitle>
+        </BoxHeader>
+        {sideProjects.map(item => <ProjectItem project={item} />)}
+      </Box>
+    )
+  }
+ 
+  <Pattern />
+</PageLayout>
